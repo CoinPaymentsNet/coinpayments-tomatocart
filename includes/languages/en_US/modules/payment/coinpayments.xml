@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language>
+  <definitions>
+    <definition>
+      <key>payment_coinpayments_title</key>
+      <value><![CDATA[CoinPayments.net Cryptocurrency Payments]]></value>
+      <group>modules-payment</group>
+    </definition>
+    <definition>
+      <key>payment_coinpayments_description</key>
+      <value><![CDATA[CoinPayments.net - Pay with Bitcoin, Litecoin, and other cryptocurrencies]]></value>
+      <group>modules-payment</group>
+    </definition>
+    <definition>
+      <key>payment_coinpayments_method_title</key>
+      <value><![CDATA[CoinPayments.net - Pay with Bitcoin, Litecoin, and other cryptocurrencies]]></value>
+      <group>modules-payment</group>
+    </definition>
+  </definitions>
+</language>

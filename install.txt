@@ -1,0 +1,12 @@
+TomatoCart plugin for CoinPayments.net
+Based on the original PayPal Website Payments Standard module that comes with TomatoCart.
+For license details see license.txt
+
+Installation Instructions:
+1. In your TomatoCart root folder upload the the admin and includes folder. If your client asks you to overwrite select Yes, it won't actually overwrite anything and will just upload the new files.
+
+2. In the TomatoCart admin panel, go to the Payment Modules to install and configure the CoinPayments plugin.
+		
+3. All done :)
+
+* Note: If you have your IPN Mode set to 'HTTP Auth' in your CoinPayments.net settings and the plugin doesn't work for you try switching it over to HMAC. HMAC is always the recommended setting if possible because it is more secure.
