@@ -50,7 +50,7 @@ class osC_Payment_coinpayments extends osC_Payment_Admin
      * @access private
      */
 
-    var $_author_www = 'https://api.coinpayments.net';
+    var $_author_www = 'https://aplha.coinpayments.net';
 
     /**
      * The status of the module
