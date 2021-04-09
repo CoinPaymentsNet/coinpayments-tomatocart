@@ -115,7 +115,7 @@ class osC_Payment_coinpayments extends osC_Payment
                 'cancel-url' => osc_href_link(FILENAME_CHECKOUT, 'checkout', 'SSL', null, null, true),
             );
 
-            $redirect = sprintf('%s/%s/?%s', CoinpaymentsApi::API_URL, CoinpaymentsApi::API_CHECKOUT_ACTION, http_build_query($params));
+            $redirect = sprintf('%s/%s/?%s', CoinpaymentsApi::CHECKOUT_URL, CoinpaymentsApi::API_CHECKOUT_ACTION, http_build_query($params));
             unset($_SESSION['coin-invoice']);
             osc_redirect($redirect);
         } else {
