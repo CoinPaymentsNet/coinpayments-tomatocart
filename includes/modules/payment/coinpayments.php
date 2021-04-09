@@ -189,7 +189,7 @@ class osC_Payment_coinpayments extends osC_Payment
             $signature = $_SERVER['HTTP_X_COINPAYMENTS_SIGNATURE'];
             $request_data = json_decode($content, true);
 
-            if ($this->checkDataSignature($signature, $content) && isset($request_data['invoice']['invoiceId'])) {
+            if ($this->checkDataSignature($signature, $content, $request_data['invoice']['status']) && isset($request_data['invoice']['invoiceId'])) {
 
                 $invoice_str = $request_data['invoice']['invoiceId'];
                 $invoice_str = explode('|', $invoice_str);
@@ -232,10 +232,10 @@ class osC_Payment_coinpayments extends osC_Payment
         }
     }
 
-    function checkDataSignature($signature, $content)
+    function checkDataSignature($signature, $content, $event)
     {
 
-        $request_url = $this->_api->getNotificationUrl($this->_code);
+        $request_url = $this->_api->getNotificationUrl($this->_code, MODULE_PAYMENT_COINPAYMENTS_CLIENT_ID, $event);
         $client_secret = MODULE_PAYMENT_COINPAYMENTS_CLIENT_SECRET;
         $signature_string = sprintf('%s%s', $request_url, $content);
         $encoded_pure = $this->_api->encodeSignatureString($signature_string, $client_secret);

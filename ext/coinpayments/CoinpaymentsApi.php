@@ -16,6 +16,9 @@ class CoinpaymentsApi
     const API_CHECKOUT_ACTION = 'checkout';
     const FIAT_TYPE = 'fiat';
 
+    const PAID_EVENT = 'Paid';
+    const CANCELLED_EVENT = 'Cancelled';
+
     const WEBHOOK_NOTIFICATION_URL = '?callback&module=';
 
     /**
@@ -25,7 +28,7 @@ class CoinpaymentsApi
      * @return bool|mixed
      * @throws Exception
      */
-    public function createWebHook($client_id, $client_secret, $notification_url)
+    public function createWebHook($client_id, $client_secret, $notification_url, $event)
     {
 
         $action = sprintf(self::API_WEBHOOK_ACTION, $client_id);
@@ -33,11 +36,7 @@ class CoinpaymentsApi
         $params = array(
             "notificationsUrl" => $notification_url,
             "notifications" => array(
-                "invoiceCreated",
-                "invoicePending",
-                "invoicePaid",
-                "invoiceCompleted",
-                "invoiceCancelled",
+                sprintf("invoice%s", $event)
             ),
         );
 
@@ -150,9 +149,9 @@ class CoinpaymentsApi
      * @param $code
      * @return string
      */
-    public function getNotificationUrl($code)
+    public function getNotificationUrl($code, $client_id, $event)
     {
-        return HTTPS_SERVER . DIR_WS_HTTPS_CATALOG . FILENAME_CHECKOUT . self::WEBHOOK_NOTIFICATION_URL . $code;
+        return HTTPS_SERVER . DIR_WS_HTTPS_CATALOG . FILENAME_CHECKOUT . self::WEBHOOK_NOTIFICATION_URL . $code . 'clientId='.$client_id . '&event=' . $event;
     }
 
     /**
