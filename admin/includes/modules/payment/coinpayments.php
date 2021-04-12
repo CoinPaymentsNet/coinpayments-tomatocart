@@ -103,10 +103,10 @@ class osC_Payment_coinpayments extends osC_Payment_Admin
                             }
 
                             if (!in_array($api->getNotificationUrl($this->_code, MODULE_PAYMENT_COINPAYMENTS_CLIENT_ID, CoinpaymentsApi::CANCELLED_EVENT), $webhooks_urls_list)) {
-                                $api->createWebHook(MODULE_PAYMENT_COINPAYMENTS_CLIENT_ID, MODULE_PAYMENT_COINPAYMENTS_CLIENT_SECRET, $api->getNotificationUrl($this->_code, MODULE_PAYMENT_COINPAYMENTS_CLIENT_ID, CoinpaymentsApi::CANCELLED_EVENT));
+                                $api->createWebHook(MODULE_PAYMENT_COINPAYMENTS_CLIENT_ID, MODULE_PAYMENT_COINPAYMENTS_CLIENT_SECRET, $api->getNotificationUrl($this->_code, MODULE_PAYMENT_COINPAYMENTS_CLIENT_ID, CoinpaymentsApi::CANCELLED_EVENT), CoinpaymentsApi::CANCELLED_EVENT);
                             }
                             if (!in_array($api->getNotificationUrl($this->_code, MODULE_PAYMENT_COINPAYMENTS_CLIENT_ID, CoinpaymentsApi::PAID_EVENT), $webhooks_urls_list)) {
-                                $api->createWebHook(MODULE_PAYMENT_COINPAYMENTS_CLIENT_ID, MODULE_PAYMENT_COINPAYMENTS_CLIENT_SECRET, $api->getNotificationUrl($this->_code, MODULE_PAYMENT_COINPAYMENTS_CLIENT_ID, CoinpaymentsApi::PAID_EVENT));
+                                $api->createWebHook(MODULE_PAYMENT_COINPAYMENTS_CLIENT_ID, MODULE_PAYMENT_COINPAYMENTS_CLIENT_SECRET, $api->getNotificationUrl($this->_code, MODULE_PAYMENT_COINPAYMENTS_CLIENT_ID, CoinpaymentsApi::PAID_EVENT), CoinpaymentsApi::PAID_EVENT);
                             }
                         }
                     } catch (Exception $e) {
