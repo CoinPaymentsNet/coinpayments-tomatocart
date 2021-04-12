@@ -28,8 +28,13 @@ class osC_Payment_coinpayments extends osC_Payment
     {
         global $osC_Database, $osC_Language, $osC_ShoppingCart;
 
+        $coinpayments_link = sprintf(
+            '<a href="%s" target="_blank" style="text-decoration: underline; font-weight: bold;" title="CoinPayments.net">CoinPayments.net</a>',
+            'https://alpha.coinpayments.net/'
+        );
+        $description = sprintf(' via <br/>%s', $coinpayments_link);
         $this->_title = $osC_Language->get('payment_coinpayments_title');
-        $this->_method_title = $osC_Language->get('payment_coinpayments_method_title');
+        $this->_method_title = $osC_Language->get('payment_coinpayments_method_title') . $description;
         $this->_status = ((MODULE_PAYMENT_COINPAYMENTS_STATUS == '1') ? true : false);
         $this->_sort_order = MODULE_PAYMENT_COINPAYMENTS_SORT_ORDER;
 
