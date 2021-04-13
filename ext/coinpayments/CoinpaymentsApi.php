@@ -46,28 +46,26 @@ class CoinpaymentsApi
 
     /**
      * @param $client_id
-     * @param int $currency_id
-     * @param string $invoice_id
-     * @param int $amount
-     * @param string $display_value
+     * @param $invoice_params
      * @return bool|mixed
      * @throws Exception
      */
-    public function createSimpleInvoice($client_id, $currency_id = 5057, $invoice_id = 'Validate invoice', $amount = 1, $display_value = '0.01')
+    public function createSimpleInvoice($client_id, $invoice_params)
     {
 
         $action = self::API_SIMPLE_INVOICE_ACTION;
 
         $params = array(
             'clientId' => $client_id,
-            'invoiceId' => $invoice_id,
+            'invoiceId' => $invoice_params['invoice_id'],
             'amount' => array(
-                'currencyId' => $currency_id,
-                "displayValue" => $display_value,
-                'value' => $amount
+                'currencyId' => $invoice_params['currency_id'],
+                "displayValue" => $invoice_params['display_value'],
+                'value' => $invoice_params['amount']
             ),
         );
 
+        $params = $this->append_billing_data($params, $invoice_params['billing_data']);
         $params = $this->appendInvoiceMetadata($params);
         return $this->sendRequest('POST', $action, $client_id, $params);
     }
@@ -75,27 +73,25 @@ class CoinpaymentsApi
     /**
      * @param $client_id
      * @param $client_secret
-     * @param $currency_id
-     * @param $invoice_id
-     * @param $amount
-     * @param $display_value
+     * @param  $invoice_params
      * @return bool|mixed
      * @throws Exception
      */
-    public function createMerchantInvoice($client_id, $client_secret, $currency_id, $invoice_id, $amount, $display_value)
+    public function createMerchantInvoice($client_id, $client_secret, $invoice_params)
     {
 
         $action = self::API_MERCHANT_INVOICE_ACTION;
 
         $params = array(
-            "invoiceId" => $invoice_id,
+            "invoiceId" => $invoice_params['invoice_id'],
             "amount" => array(
-                "currencyId" => $currency_id,
-                "displayValue" => $display_value,
-                "value" => $amount
+                "currencyId" => $invoice_params['currency_id'],
+                "displayValue" => $invoice_params['display_value'],
+                "value" => $invoice_params['amount']
             ),
         );
 
+        $params = $this->append_billing_data($params, $invoice_params['billing_data']);
         $params = $this->appendInvoiceMetadata($params);
         return $this->sendRequest('POST', $action, $client_id, $params, $client_secret);
     }
@@ -177,6 +173,30 @@ class CoinpaymentsApi
             "hostname" => HTTPS_SERVER,
         );
 
+        return $request_data;
+    }
+
+    function append_billing_data($request_data, $billing_data)
+    {
+        $request_data['buyer'] = array(
+            "companyName" => $billing_data['company'],
+            "name" => array(
+                "firstName" => $billing_data['firstname'],
+                "lastName" => $billing_data['lastname']
+            ),
+        );
+        if (preg_match('/^([A-Z]{2})$/', $billing_data['country_iso_code_2'])
+            && !empty($billing_data['street_address'])
+            && !empty($billing_data['city'])
+        ) {
+            $request_data['buyer']['address'] = array(
+                'address1' => $billing_data['street_address'],
+                'provinceOrState' => $billing_data['state'],
+                'city' => $billing_data['city'],
+                'countryCode' => $billing_data['country_iso_code_2'],
+                'postalCode' => $billing_data['postcode'],
+            );
+        }
         return $request_data;
     }
 

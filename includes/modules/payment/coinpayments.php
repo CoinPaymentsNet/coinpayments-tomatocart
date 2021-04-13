@@ -88,12 +88,7 @@ class osC_Payment_coinpayments extends osC_Payment
     function process_button()
     {
         try {
-//            $invoice = $this->createInvoice();
-            $invoice = array(
-                'id' => '85XY1bbXky2r3YCGcpUFgR',
-                'link' => 'https://api.coinpayments.net/api/v1/merchant/invoices/85XY1bbXky2r3YCGcpUFgR',
-            );
-
+            $invoice = $this->createInvoice();
             $_SESSION['coin-invoice'] = $invoice;
         } catch (Exception $e) {
         }
@@ -172,11 +167,19 @@ class osC_Payment_coinpayments extends osC_Payment
         $amount = number_format($osC_ShoppingCart->getTotal(), $coin_currency['decimalPlaces'], '', '');
         $display_value = $osC_ShoppingCart->getTotal();
 
+        $invoice_params = array(
+            'invoice_id' => $invoice_id,
+            'currency_id' => $coin_currency['id'],
+            'amount' => $amount,
+            'display_value' => $display_value,
+            'billing_data' => $osC_ShoppingCart->_shipping_address,
+        );
+
         if (MODULE_PAYMENT_COINPAYMENTS_WEBHOOKS) {
-            $resp = $this->_api->createMerchantInvoice($client_id, $client_secret, $coin_currency['id'], $invoice_id, $amount, $display_value);
+            $resp = $this->_api->createMerchantInvoice($client_id, $client_secret, $invoice_params);
             $invoice = array_shift($resp['invoices']);
         } else {
-            $invoice = $this->_api->createSimpleInvoice($client_id, $coin_currency['id'], $invoice_id, $amount, $display_value);
+            $invoice = $this->_api->createSimpleInvoice($client_id, $invoice_params);
         }
 
         return $invoice;
