@@ -22,3 +22,12 @@ Installation:
 5.  Go to CoinPayments plugin configuration.
 6.  Enter Client ID.
 7.  Enable webhooks and enter Client Secret to receive CoinPayments payment notifications.
+
+# Follow the steps below to download this plugin:
+  
+1. Log into your https://alpha.coinpayments.net/ account
+2. Click on Business Tools -> Intergrations -> Pre-built Plugins -> + add Intergration button
+3. Select this plug-in from the dropdown menu
+4. Click the download plugin button  
+   
+![Screenshot 2021-04-26 041350](https://user-images.githubusercontent.com/72504315/116074099-21356100-a646-11eb-8613-617f2d906e83.png)
