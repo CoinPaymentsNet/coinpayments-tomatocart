@@ -10,19 +10,6 @@ The information presented on alpha.coinpayments.net (the "Demo Site") is for dem
 
 In no event will CoinPayments Inc. or its directors, officers, employees, shareholders, service providers or agents, be liable to you, or anyone else, for any decision(s) made or action(s) taken in reliance upon the information contained in the Demo Site, nor for any direct, indirect, incidental, special, exemplary, punitive, consequential, or other damages whatsoever (including, but not limited to, liability for loss of use, funds, data or profits) whether in an action of contract, statute, tort or otherwise, relating to the use of the Demo Site.
 
-#CoinPayments-TomatoCart
-
-Installation:
-=============
-
-1.  Download plugin
-2.  In your TomatoCart root folder upload the the admin, ext and includes folder. If your client asks you to overwrite select Yes, it won't actually overwrite anything and will just upload the new files. 
-3.  In the TomatoCart admin panel, go to the Modules > Payments.
-4.  Install CoinPayments plugin.
-5.  Go to CoinPayments plugin configuration.
-6.  Enter Client ID.
-7.  Enable webhooks and enter Client Secret to receive CoinPayments payment notifications.
-
 # Follow the steps below to download this plugin:
   
 1. Log into your https://alpha.coinpayments.net/ account
