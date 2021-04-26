@@ -30,4 +30,5 @@ Installation:
 3. Select this plug-in from the dropdown menu
 4. Click the download plugin button  
    
-![Screenshot 2021-04-26 041350](https://user-images.githubusercontent.com/72504315/116074212-45913d80-a646-11eb-866b-5aab91e5469a.png)
+![Screenshot 2021-04-26 041350 (2)](https://user-images.githubusercontent.com/72504315/116074310-622d7580-a646-11eb-80a5-6dd37b3af4fa.png)
+
