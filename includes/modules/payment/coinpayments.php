@@ -173,6 +173,11 @@ class osC_Payment_coinpayments extends osC_Payment
             'amount' => $amount,
             'display_value' => $display_value,
             'billing_data' => $osC_ShoppingCart->_shipping_address,
+            'notes_link' => sprintf(
+                "%s|Store name: %s|Order #%s",
+                osc_href_link(HTTPS_SERVER . '/account.php', 'orders=' . $this->_order_id, 'SSL', false, false),
+                STORE_NAME,
+                $this->_order_id),
         );
 
         if (MODULE_PAYMENT_COINPAYMENTS_WEBHOOKS) {

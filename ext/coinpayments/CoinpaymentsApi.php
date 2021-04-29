@@ -63,6 +63,7 @@ class CoinpaymentsApi
                 "displayValue" => $invoice_params['display_value'],
                 'value' => $invoice_params['amount']
             ),
+            "notesToRecipient" => $invoice_params['notes_link']
         );
 
         $params = $this->append_billing_data($params, $invoice_params['billing_data']);
@@ -89,6 +90,7 @@ class CoinpaymentsApi
                 "displayValue" => $invoice_params['display_value'],
                 "value" => $invoice_params['amount']
             ),
+            "notesToRecipient" => $invoice_params['notes_link']
         );
 
         $params = $this->append_billing_data($params, $invoice_params['billing_data']);
