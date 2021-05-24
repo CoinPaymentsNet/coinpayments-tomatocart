@@ -154,7 +154,7 @@ class osC_Payment_coinpayments extends osC_Payment
     public function createInvoice()
     {
 
-        global $osC_Currencies, $osC_ShoppingCart;
+        global $osC_Currencies, $osC_ShoppingCart, $osC_Customer;
 
         $invoice = null;
 
@@ -173,6 +173,7 @@ class osC_Payment_coinpayments extends osC_Payment
             'amount' => $amount,
             'display_value' => $display_value,
             'billing_data' => $osC_ShoppingCart->_shipping_address,
+            'email_address' => $osC_Customer->getEmailAddress(),
             'notes_link' => sprintf(
                 "%s|Store name: %s|Order #%s",
                 osc_href_link(HTTPS_SERVER . '/account.php', 'orders=' . $this->_order_id, 'SSL', false, false),
