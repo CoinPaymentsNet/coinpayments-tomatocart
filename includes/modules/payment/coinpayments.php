@@ -222,10 +222,10 @@ class osC_Payment_coinpayments extends osC_Payment
 
                         $status = $request_data['invoice']['status'];
                         if ($order['orders_status'] < ORDERS_STATUS_PAID) {
-                            if ($status == 'Completed') {
-                                $order_status = MODULE_PAYMENT_COINPAYMENTS_COMPLETED_ORDER_STATUS_ID;
-                            } elseif ($status == 'Cancelled') {
-                                $order_status = MODULE_PAYMENT_COINPAYMENTS_CANCELLED_ORDER_STATUS_ID;
+                            if ($status == CoinpaymentsApi::PAID_EVENT) {
+                                $order_status = ORDERS_STATUS_PAID;
+                            } elseif ($status == CoinpaymentsApi::CANCELLED_EVENT) {
+                                $order_status = ORDERS_STATUS_CANCELLED;
                             }
 
                             osC_Order::process($invoice_id, $order_status);
