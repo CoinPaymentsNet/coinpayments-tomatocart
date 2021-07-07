@@ -150,7 +150,7 @@ class CoinpaymentsApi
      */
     public function getNotificationUrl($code, $client_id, $event)
     {
-        return HTTPS_SERVER . DIR_WS_HTTPS_CATALOG . FILENAME_CHECKOUT . self::WEBHOOK_NOTIFICATION_URL . $code . 'clientId='.$client_id . '&event=' . $event;
+        return HTTPS_SERVER . DIR_WS_HTTPS_CATALOG . FILENAME_CHECKOUT . self::WEBHOOK_NOTIFICATION_URL . $code . '&clientId='.$client_id . '&event=' . $event;
     }
 
     /**
