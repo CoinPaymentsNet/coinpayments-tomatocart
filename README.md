@@ -1,3 +1,5 @@
+> NOTICE: Migrated to [CoinPaymentsNet/plugin-tomatocart](https://github.com/CoinPaymentsNet/plugin-tomatocart).
+
 IMPORTANT NOTE:
 
 This is only for use with: https://alpha.coinpayments.net/
